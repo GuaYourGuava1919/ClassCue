@@ -37,7 +37,7 @@
   
   <script setup lang="ts">
   import { doc, updateDoc } from 'firebase/firestore'
-  import db from '../../firebase'
+  import {db} from '../../firebase'
   import { useSeatQueueWatcher } from '../../composables/useSeatQueueWatcher'
   
   const { seatQueue } = useSeatQueueWatcher('20250508')

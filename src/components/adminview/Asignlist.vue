@@ -30,7 +30,7 @@
   <script setup lang="ts">
   import { ref, onMounted } from 'vue'
   import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore'
-  import db from '../../firebase'
+  import {db} from '../../firebase'
   
   const boundSeats = ref<{ schoolID: string, seat: number }[]>([])
   

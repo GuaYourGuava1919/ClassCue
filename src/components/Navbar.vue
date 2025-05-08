@@ -4,37 +4,81 @@
       <nav class="nav-links" :class="{ open: menuOpen }">
         <RouterLink to="/" class="nav-link" @click="menuOpen = false">首頁</RouterLink>
         <RouterLink to="/admin" class="nav-link" @click="menuOpen = false">管理者</RouterLink>
-        <button class="nav-link login-btn" @click="showLogin = true; menuOpen = false">登入</button>
+
+        <template v-if="currentUser">
+          <span class="nav-link user-email">{{ currentUser }}</span>
+          <button class="nav-link login-btn" @click="logout">登出</button>
+        </template>
+        <template v-else>
+          <button class="nav-link login-btn" @click="showLogin = true; menuOpen = false">登入</button>
+        </template>
       </nav>
+
       <button class="hamburger" @click="toggleMenu">☰</button>
   
-      <!-- 登入 Dialog -->
+    <!-- 登入 Dialog -->
       <div v-if="showLogin" class="dialog-overlay" @click.self="showLogin = false">
         <div class="dialog">
           <h2>登入系統</h2>
-          <input type="text" placeholder="帳號" />
-          <input type="password" placeholder="密碼" />
+          <input type="email" placeholder="Email" v-model="email" />
+          <input type="password" placeholder="密碼" v-model="password" />
           <div class="actions">
             <button class="btn" @click="showLogin = false">取消</button>
-            <button class="btn primary">登入</button>
+            <button class="btn primary" @click="login">登入</button>
           </div>
         </div>
       </div>
+
     </header>
   </template>
   
-  <script setup lang="ts">
-  import { ref } from 'vue'
-  
-  const menuOpen = ref(false)
-  const showLogin = ref(false)
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import  { auth } from '../firebase'
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
+import router from '../router'
 
-  const toggleMenu = () => {
-    menuOpen.value = !menuOpen.value
-    console.log('Menu toggled:', menuOpen.value)
+const menuOpen = ref(false)
+const showLogin = ref(false)
+const email = ref('')
+const password = ref('')
+const currentUser = ref<string | null>(null)
+
+const toggleMenu = () => {
+  menuOpen.value = !menuOpen.value
+}
+
+// 登入行為
+const login = async () => {
+  try {
+    const result = await signInWithEmailAndPassword(auth, email.value, password.value)
+    currentUser.value = result.user.email
+    showLogin.value = false
+    email.value = ''
+    password.value = ''
+    alert('✅ 登入成功')
+    router.push('/admin')
+  } catch (err: any) {
+    alert(`❌ 登入失敗：${err.message}`)
   }
-  
-  </script>
+}
+
+// 登出
+const logout = async () => {
+  await signOut(auth)
+  currentUser.value = null
+  alert('👋 已登出')
+  router.push('/')
+}
+
+// 初始載入時確認登入狀態
+onMounted(() => {
+  onAuthStateChanged(auth, (user) => {
+    currentUser.value = user?.email || null
+  })
+})
+
+</script>
   
   <style scoped lang="scss">
   .navbar {

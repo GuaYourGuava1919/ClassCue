@@ -1,7 +1,7 @@
 // composables/useSeatQueueWatcher.ts
 import { ref, onMounted, onUnmounted } from 'vue'
 import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore'
-import db from '../firebase'
+import {db }from '../firebase'
 
 export function useSeatQueueWatcher(docId = '20250508') {
   const seatQueue = ref<{ seat: number; status: string; timestamp?: number }[]>([])

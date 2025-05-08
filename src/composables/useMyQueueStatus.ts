@@ -3,7 +3,7 @@ import { ref, watchEffect } from 'vue'
 import { computed } from 'vue'
 import type { Ref } from 'vue'
 import { doc } from 'firebase/firestore'
-import db from '../firebase'
+import {db} from '../firebase'
 
 import { onSnapshot } from 'firebase/firestore'
 
