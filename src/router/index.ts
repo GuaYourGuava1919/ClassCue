@@ -3,7 +3,7 @@ import Home from '../views/HomeView.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
-  { path: '/', name: 'Admin', component: () => import('../views/AdminView.vue') },
+  { path: '/admin', name: 'admin', component: () => import('../views/AdminView.vue') },
 //   { path: '/login', name: 'Login', component: () => import('../views/Login.vue') }
 ]
 

@@ -25,6 +25,7 @@
 
   .title-area{
     font-family: "Playwrite DK Loopet", cursive;
+    color: $primary-color;
 
   }
   

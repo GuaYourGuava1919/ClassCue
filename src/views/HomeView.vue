@@ -11,9 +11,9 @@
 
 <script setup lang="ts">
 import Banner from '../components/Banner.vue'
-import SeatTable from '../components/SeatTable.vue'
-import Asign from '../components/Asign.vue'
-import Controlpanel from '../components/Controlpanel.vue'
+import SeatTable from '../components/homeview/SeatTable.vue'
+import Asign from '../components/homeview/Asign.vue'
+import Controlpanel from '../components/homeview/Controlpanel.vue'
 
 </script>
 

@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { useSeatQueue } from '../composables/useSeatQueue'
-import {useMyQueueStatus} from '../composables/useMyQueueStatus'
+import { useSeatQueue } from '../../composables/useSeatQueue'
+import {useMyQueueStatus} from '../../composables/useMyQueueStatus'
 import { watchEffect, ref } from 'vue'
 
 

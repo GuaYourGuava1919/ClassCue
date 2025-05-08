@@ -18,7 +18,7 @@
   
   <script setup lang="ts">
 import { watchEffect } from 'vue'
-import { useSeatQueueWatcher } from '../composables/useSeatQueueWatcher'
+import { useSeatQueueWatcher } from '../../composables/useSeatQueueWatcher'
 
 const { seatQueue, seatMap } = useSeatQueueWatcher()
 
