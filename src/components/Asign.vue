@@ -14,7 +14,6 @@
           placeholder="9位學號"
           maxlength="9"
           @keyup.enter="markSeat"
-          @input="formatstudentId"
         />
       </div>
 
@@ -45,14 +44,32 @@
 
 <script setup lang="ts">
 import { useSeatStorage } from '@/composables/useSeatStorage'
+import { useSeatQueue } from '@/composables/useSeatQueue'
 
 const {
   info,
   hasRegistered,
   register: markSeat,
-  clear: deleteSeat,
-  formatStudentId,
+  clear: clearSeatBinding, // ✅ 改成更語意化的名字
+  // formatStudentId,
 } = useSeatStorage()
+
+// const { removeSeatFromQueue } = useSeatQueue()
+const { updateSeatQueue, removeSeatFromQueue } = useSeatQueue()
+
+
+const deleteSeat = async () => {
+  console.log(info.value.studentId)
+  if (!info.value.studentId || !info.value.enteredSeat) {
+    console.error('❌ studentId 或 seatNum 無效')
+    return
+  }
+  await removeSeatFromQueue(info.value.studentId, info.value.enteredSeat)
+  clearSeatBinding()
+  console.log(`✅ 解除綁定座位 ${info.value.enteredSeat} 的學號 ${info.value.studentId}`)
+}
+
+
 
 </script>
 
