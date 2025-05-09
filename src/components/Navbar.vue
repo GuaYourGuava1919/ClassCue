@@ -1,6 +1,8 @@
 <template>
     <header class="navbar">
-      <div class="logo">ClassCue</div>
+      <div class="logo">ClassCue
+      <p>Hey! Raise your hand 3.0</p>
+      </div>
       <nav class="nav-links" :class="{ open: menuOpen }">
         <RouterLink to="/" class="nav-link" @click="menuOpen = false">首頁</RouterLink>
         <RouterLink to="/admin" class="nav-link" @click="menuOpen = false">管理者</RouterLink>
@@ -101,6 +103,11 @@ onMounted(() => {
       letter-spacing: 1px;
       font-family: "Playwrite DK Loopet", cursive;
     //   background-color: aqua;
+      p{
+        font-size: 0.8rem;
+        margin: 0;
+        color: $text-color;
+      }
     }
   
     .nav-links {

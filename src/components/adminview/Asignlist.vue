@@ -28,19 +28,26 @@
   </template>
   
   <script setup lang="ts">
-  import { ref, onMounted } from 'vue'
-  import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore'
+  import { ref, onMounted,onUnmounted } from 'vue'
+  import { collection, getDocs, deleteDoc, doc, updateDoc, onSnapshot } from 'firebase/firestore'
+
   import {db} from '../../firebase'
   
   const boundSeats = ref<{ schoolID: string, seat: number }[]>([])
   
-  const fetchBoundSeats = async () => {
-    const snapshot = await getDocs(collection(db, 'users'))
+  const listenToBoundSeats = () => {
+  const usersRef = collection(db, 'users')
+
+  // ✅ 啟用實時監聽
+  const unsubscribe = onSnapshot(usersRef, (snapshot) => {
     boundSeats.value = snapshot.docs.map(doc => ({
       schoolID: doc.id,
       seat: doc.data().seat,
     }))
-  }
+  })
+
+  return unsubscribe // 可選：返回給 onUnmounted 做移除用
+}
   
   const unbindSeat = async (schoolID: string) => {
     try {
@@ -53,21 +60,37 @@
   }
   
   const clearAll = async () => {
-    if (!confirm('⚠️ 你確定要刪除所有綁定嗎？這個動作無法復原！')) return
-  
-    try {
-      const snapshot = await getDocs(collection(db, 'users'))
-      const deletions = snapshot.docs.map(d => deleteDoc(doc(db, 'users', d.id)))
-      await Promise.all(deletions)
-      boundSeats.value = []
-      alert('✅ 所有綁定已清除！')
-    } catch (err) {
-      console.error('清除失敗', err)
-      alert('❌ 清除失敗，請再試一次')
-    }
+  if (!confirm('⚠️ 你確定要刪除所有綁定與排隊資料嗎？這個動作無法復原！')) return
+
+  try {
+    // ✅ 1. 清除 users 集合（綁定資訊）
+    const snapshot = await getDocs(collection(db, 'users'))
+    const deletions = snapshot.docs.map(d => deleteDoc(doc(db, 'users', d.id)))
+    await Promise.all(deletions)
+
+    // ✅ 2. 清空排隊清單 seatTable/20250508 中的 queue
+    const queueRef = doc(db, 'seatTable', '20250508')
+    await updateDoc(queueRef, { queue: [] })
+
+    // ✅ 3. 清除本地資料（如果有）
+    boundSeats.value = []
+
+    alert('✅ 所有綁定與排隊資料已清除！')
+  } catch (err) {
+    console.error('❌ 清除失敗', err)
+    alert('❌ 清除失敗，請再試一次')
   }
+}
   
-  onMounted(fetchBoundSeats)
+onMounted(() => {
+  const stop = listenToBoundSeats()
+
+  // 若元件卸載時想移除監聽
+  onUnmounted(() => {
+    stop()
+  })
+})
+
   </script>
   
   <style scoped>

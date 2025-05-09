@@ -2,6 +2,7 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
+import OnboardingDialog from './components/OnboardingDialog.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import Footer from './components/Footer.vue'
     <Navbar/>
     <router-view />
     <Footer/>
+    <OnboardingDialog />
   </div>
 </template>
 
