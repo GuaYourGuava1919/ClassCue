@@ -48,7 +48,7 @@ export function useSeatStorage() {
     info.value = { studentId: '', enteredSeat: null }
     hasRegistered.value = false
     console.log('已清除登記資料')
-    // window.location.reload()
+    window.location.reload()
   }
 
   // 自動移除非數字

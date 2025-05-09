@@ -4,6 +4,10 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
 export default defineConfig({
+  base: './', // ✅ 否則部署後重整會 404
+  build: {
+    outDir: 'dist'
+  },
   plugins: [vue()],
   css: {
     preprocessorOptions: {
