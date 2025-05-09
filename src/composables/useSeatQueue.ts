@@ -1,6 +1,6 @@
 // composables/useSeatQueue.ts
 import { doc, runTransaction } from 'firebase/firestore'
-import type { Ref } from 'vue'
+// import type { Ref } from 'vue'
 import {db} from '../firebase'
 
 interface QueueEntry {

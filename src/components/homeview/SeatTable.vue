@@ -20,7 +20,7 @@
 import { watchEffect } from 'vue'
 import { useSeatQueueWatcher } from '../../composables/useSeatQueueWatcher'
 
-const { seatQueue, seatMap } = useSeatQueueWatcher()
+const { seatMap } = useSeatQueueWatcher()
 
 const seats = [
   [18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],

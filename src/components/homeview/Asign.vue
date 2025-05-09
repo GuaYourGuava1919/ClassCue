@@ -54,8 +54,7 @@ const {
   // formatStudentId,
 } = useSeatStorage()
 
-// const { removeSeatFromQueue } = useSeatQueue()
-const { updateSeatQueue, removeSeatFromQueue } = useSeatQueue()
+const { removeSeatFromQueue } = useSeatQueue()
 
 
 const deleteSeat = async () => {

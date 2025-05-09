@@ -16,7 +16,7 @@ import { watchEffect, ref } from 'vue'
 const studentId = ref('')
 const seatNum = ref(0)
 
-const currentStatus = ref<'question' | 'acceptance' | null>(null)
+// const currentStatus = ref<'question' | 'acceptance' | null>(null)
 
 
 watchEffect(() => {
