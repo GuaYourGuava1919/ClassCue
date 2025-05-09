@@ -8,7 +8,9 @@
       "baseUrl": ".",
       "paths": {
         "@/*": ["src/*"]
-      }
+      },
+      "module": "esnext",     // ✅ 加這行
+      "target": "esnext",     // （建議也一起設）
     }
   
 }

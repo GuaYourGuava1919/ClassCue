@@ -40,7 +40,7 @@ function getCurrentUser(): Promise<import('firebase/auth').User | null> {
   })
 }
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, _from, next) => {
   const requiresAuth = to.matched.some((r) => r.meta.requiresAuth)
 
   if (!requiresAuth) return next()
