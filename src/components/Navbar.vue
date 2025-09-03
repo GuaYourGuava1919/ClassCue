@@ -6,7 +6,6 @@
       <nav class="nav-links" :class="{ open: menuOpen }">
         <RouterLink to="/" class="nav-link" @click="menuOpen = false">首頁</RouterLink>
         <RouterLink to="/admin" class="nav-link" @click="menuOpen = false">管理者</RouterLink>
-
         <template v-if="currentUser">
           <span class="nav-link user-email">{{ currentUser }}</span>
           <button class="nav-link login-btn" @click="logout">登出</button>

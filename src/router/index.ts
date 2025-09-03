@@ -14,11 +14,6 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/AdminView.vue'),
     meta: { requiresAuth: true },
   },
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   name: 'not-found',
-  //   component: () => import('../views/NotFound.vue'),
-  // },
 ];
 
 const router = createRouter({

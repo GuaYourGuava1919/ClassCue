@@ -100,10 +100,9 @@ onMounted(() => {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    height: 300px;
+    min-height: 400px;
     overflow-y: scroll;
     box-sizing: border-box;
-    /* margin: 20px; */
   }
   
   .header {

@@ -2,17 +2,11 @@
     <div class="banner-wrapper">
       <div class="title-area">
         <h1>ClassCue</h1>
-        <h2>LE404A</h2>
-      </div>
-  
-      <div class="teacher-area">
-        <p>教師 / 投影機 / 電腦區</p>
       </div>
     </div>
   </template>
   
   <script setup lang="ts">
-  // 無需特別邏輯
   </script>
   
   <style scoped lang="scss">
