@@ -67,22 +67,20 @@ const es601Layout: SeatLayout = {
   ]
 }
 
-const es401Layout: SeatLayout = {
-  id: 'es401',
-  name: 'ES401 座位表',
+const le401Layout: SeatLayout = {
+  id: 'le401',
+  name: 'LE401 座位表',
   rows: [
-    [1, 2, 3, 4, 5, 6, null, null, null, null, null, null, 7, 8, 9, 10, 11, 12],
-    [13, 14, 15, 16, 17, 18, null, 19, 20, 21, 22, null, 23, 24, 25, 26, 27, 28],
-    [29, 30, 31, 32, 33, 34, null, 35, 36, 37, 38, null, 39, 40, 41, 42, 43, 44],
-    [45, 46, 47, 48, 49, 50, null, 51, 52, 53, 54, null, 55, 56, 57, 58, 59, 60],
-    [61, 62, 63, 64, 65, 66, null, 67, 68, 69, 70, null, 71, 72, 73, 74, 75, 76],
-    [77, 78, 79, 80, 81, 82, null, null, null, null, null, null, 83, 84, 85, 86, 87, 88],
-    [89, 90, 91, 92, 93, 94, null, null, null, null, null, null, 95, 96, 97, 98, 99, 100],
+    [null, null, 1, 2, null, null, null, null, null],
+    [3, 4, 5, 6, null, 7, 8, 9, 10],
+    [11, 12, 13, 14, null, 15, 16, 17, 18],
+    [19, 20, 21, 22, null, 23, 24, 25, 26],
+    [null, 27, 28, 29, null, 30, 31, 32, 33],
   ]
 }
 
 /** --- 版型清單與選擇 --- */
-const layouts = [es601Layout, es401Layout]
+const layouts = [es601Layout, le401Layout]
 const selectedLayoutId = ref<SeatLayout['id']>('es601')
 
 const currentLayout = computed(
